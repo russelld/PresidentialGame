@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>The Presidential Game</title>
+	<meta charset="utf-8">
+<meta name="description" content="The Presidential is a strategy board game played on a U.S. map with Electoral College votes. Democrats and Republicans play to win more than 270 votes. " />
+
+        <meta name="viewport" content="width=1020, user-scalable=no, initial-scale=.5, maximum-scale=.5, minimum-scale=.5, target-densitydpi=device-dpi" />
+
+<link rel="stylesheet" type="text/css" href="css/2012.css" media="screen" title="2012 (screen)">
+<link rel="stylesheet" type="text/css" href="css/grid.css" media="screen" title="2012 (screen)">
+<link rel="stylesheet" type="text/css" href="css/colorbox.css" media="screen" title="2012 (screen)">
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+<link href="images/favicon.png" rel="shortcut icon" type="image/x-icon" />
+<link rel="apple-touch-icon" href="images/touch.png" />
+
+	<script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.backstretch.min.js"></script>
+	<script src="js/jquery.colorbox.js"></script>
+
+    <script type="text/javascript" src="js/MapConfig.js"> </script>
+    <script type="text/javascript" src="js/Map.js">   </script>
+    <script type="text/javascript">
+
+    var user_data;    
+    
+    </script>
+
+	<script>
+		
+		
+		
+		$(function(){
+
+	    $.backstretch("images/bg.jpg");
+
+		$("#homeLink").bind('click', function() {
+			  window.location.href='index.html';
+		});
+
+			$("#map_canvas").hover(
+				  function () {
+					$("#coverUp").fadeOut('20');
+					$("#mapArea").css('zIndex', -1);
+				  }, 
+				  function () {
+					$("#coverUp").fadeIn('10');
+					$("#mapArea").css('zIndex', 999991);
+				  }
+				);
+				
+				
+	$(".btnIcon").hover(
+		function () {
+			$(this).attr("src", $(this).attr("src").replace(/.png/, "-over.png"));
+		},
+		function () {
+			$(this).attr("src", $(this).attr("src").replace(/-over.png/, ".png"));
+		}
+	);
+
+		$(".wrapper").delay(1500).show();
+
+
+		$('#prevWk').live('click', function() {
+      		var weekVal = $("#weekNum").html();
+      		var numVal = parseInt(weekVal) - 1;
+
+			if (weekVal != 1) {
+			$('#weekNum').html(numVal);
+			};
+
+			
+        });
+
+		$('#nxtWk').live('click', function() {
+      		var weekVal = $("#weekNum").html();
+      		var numVal = parseInt(weekVal) + 1;
+			if (weekVal != 30) {
+			$('#weekNum').html(numVal);
+			};
+        });
+
+
+		$("a.lbox").colorbox({inline:true, width:"50%", top: "220px"});
+		$("a.lbox2").colorbox({ width:"50%",top: "220px"});
+		$("a.lbox3").colorbox({inline:true, width:"50%", top: "20px"});
+
+
+        
+        
+		$('.lboxClose').live('click', function() {
+		
+			$.colorbox.close();       
+        
+        });
+
+
+
+		});
+
+
+    </script>
+
+</head>
+
+<body style="cursor: default; background-color:blue;" onload="map_main();">
+<div class="wrapper">
+<div id="gameArea">
+<div id="homeLink"></div>
+<div id="rtotal">
+<h2 style="color:#ed1c24;"><span class="count">0</span></h2>
+</div>
+<div id="dtotal">
+<h2 style="color:#27319c;"><span class="count">0</span></h2>
+</div>
+
+
+<div id="coverUp"></div>
+<div id="coverUp-m1"></div>
+<div id="coverUp-m2"></div>
+<div id="coverUp-m3"></div>
+<div id="coverUp-m4"></div>
+<div id="coverUp-m5"></div>
+<div id="coverUp-m6"></div>
+<div id="coverUp-m7"></div>
+<div id="coverUp-m8"></div>
+<div id="coverUp-m9"></div>
+<div id="coverUp-m10"></div>
+<div id="coverUp-m11"></div>
+<div id="coverUp-m12"></div>
+
+
+<div id="prevWk"></div>
+<div id="weekNum">1</div>
+<div id="nxtWk"></div>
+
+
+
+
+<div class="mapLive"><canvas id="map_canvas" width="805" height="480"></canvas></div>
+<div id="copyright2">
+&copy; 2012 The Presidential Game, LLC. All rights reserved.<br />
+Design by Solution: Design + Marketing Communications LLC<br />
+Website: Russell DeLaCour<br />
+Game Board and Pieces required<br />
+</div>
+
+<div id="buttonsG">
+<a href="game.html" id="resetGameBtn"></a>
+<a href="#inline_content2" class="lbox" rel="group2" id="howToBtn"></a>
+<a href="#inline_content3" class="lbox3" rel="group3" id="instructionsBtn"></a>
+</div>
+
+
+
+</div>
+</div>
+
+
+
+
+
+	<!-- This contains the hidden content for inline calls -->
+		<div style='display:none'>
+
+
+
+			<div id='inline_content2'  class="inlineTxt" style='padding:10px; background:#fff; text-align:center;'>
+			<h2>INSTRUCTIONS</h2>
+			<h1>Follow these steps to record your electoral votes and the week of play:</h1>
+			<p class="pT25">At the end of each turn click on the state(s) your team has won.</p>
+
+			<p>Click on a state 1x for Republican/Red, 2x for Democrat/Blue or 3x for Neutral/Tan.</p>
+			
+			<p>At the top of the map the total number of electoral votes are shown for each team.</p>
+			
+			<p>Use the arrows in the lower right to change the week counter at the end of the round.</p>
+			
+			<p class="pB40">Clicking  “New Game” will reset both the map and the week counter.</p>	
+			
+			<div class="lboxClose"></div>
+			</div>
+
+
+
+
+
+
+			<div id='inline_content3'  class="inlineTxt" style='padding:10px; background:#fff; text-align:center;'>
+			<h2>Election Rules</h2>
+			<h1>OBJECT</h1>
+			
+			<p class="blueTxt">To win the Presidential election by capturing at least 270 of the 538 electoral votes. A team may have more than 270 electoral votes during the course of the game. The team that has at least 270 electoral votes at the end of the game wins.</p>
+			
+			<h1>PREPARATION</h1>
+			
+			<p class="blueTxt">Place the board on a table, put the Politics Cards facedown in their place and bring up the WebMap Calculator . The 2 teams decide which team will be the Republicans and which team will be the Democrats. The Republicans take the 150 Red Votes (chips) and the 3 Red Dice. The Democrats take the 150 Blue Votes (chips) and the 3 Blue Dice.</p>
+			
+			<h1>LENGTH OF GAME</h1>
+			
+			<p class="blueTxt">The teams then decide how much time there is until the election by choosing  the number of weeks until the election. 15 weeks is a game that lasts approximately 1 hour. </p>
+			
+			<h1>VOTES</h1>
+			
+			<p class="blueTxt">Each chip equals 1 vote. Votes are gained through the roll of the dice and the Politics Cards. At any one time, each state is Republican (Red), Democrat (Blue) or Neutral. The votes in a state represent the net amount of chips that have been allocated by both parties. For example, if there are no votes in New York, and the Republicans add 5 votes to New York, 5 red chips are stacked on New York and the Republicans take control of the state’s total electoral votes. If the Democrats then add 8 votes to New York, the 5 red chips are removed and _3 blue chips are stacked on New York. The Democrats now control the state’s 29 electoral votes.</p>
+			
+			
+			<h1>THE PLAY</h1>
+			<p class="blueTxt">To determine which side goes first, 1 die is rolled by each team. The highest die indicates the team that goes first. On each turn, each team must decide whether it will go Campaigning or Fundraising.</p>
+			
+			
+			<h1>CAMPAIGNING</h1>
+			
+			<p class="blueTxt">If a team chooses to Campaign, the team selects and announces the 3 states in which it will campaign on that turn. Each state may only be visited once each turn. The team then rolls _3 dice. The team then decides which die corresponds to each state and contributes those votes to that state. For example, if the Democrats decide to campaign in Pennsylvania, Ohio and Illinois, they roll 3 dice. If the Democrats roll a “6”, “5” and “3”, the Democrats can opt to allocate the votes to Pennsylvania (6), Ohio (5) and Illinois (3) or the Democrats could decide to allocate the votes to Pennsylvania (5), Ohio (3) and Illinois (6).</p>
+			
+			<h1>FUNDRAISING</h1>
+			
+			<p class="blueTxt">There are 4 states where a team may go Fundraising (California, New York, Florida and Texas). If a team chooses to go Fundraising, the team selects and announces the state in which _it will fundraise on that turn. The team then rolls 2 dice and draws a Politics Card. If a team rolls a “9”, they have 9 votes to distribute. At least half of the votes must stay in the chosen fundraising state. So, in this case 5. The remaining 4 votes may be allocated individually to any other state. For example, if the Republicans went to Texas to fundraise and rolled a “9”, the Republicans must allocate 5 votes to Texas. The Republicans could decide to put all 9 votes in Texas. If they put 5 in Texas, then they might opt to allocate 2 votes to Colorado, _1 vote to Oregon and 1 vote to Washington. </p>
+			
+			
+			<h1>POLITICS CARDS</h1>
+			
+			<p class="blueTxt">Many rewards and a few penalties are offered to the teams by the Politics Cards. Teams earn a card when Fundraising. A card can be used when drawn from the deck when Fundraising or kept to use at the end of any later turn (Fundraising or Campaigning) . No more than 1 Politics Card may be used by each team during a turn. Cards labeled “Play Immediately” must be played at once. Used cards should be returned to the bottom of the deck. </p>
+			
+			<h1>THE SCORE CARD</h1>
+			
+			<p class="blueTxt">Each turn, each team’s votes are affected by its own actions and the actions of the other team. “+” will count the state’s electoral votes that were picked up in the turn. “–” will count _the state’s electoral votes that were lost during the turn. For example, if California was controlled by the Democrats (more chips) and the Republicans won it back (more chips), the Republicans would add 55 electoral votes to their total and the Democrats would subtract 55 electoral votes from their total. If no one had yet visited Ohio, and the Democrats put _5 votes in that state, the Democrats would add 18 electoral votes to their total. Nothing would happen to the Republicans.</p>
+			
+			<h1>END OF THE GAME</h1>
+			
+			<p class="blueTxt">When time is up (the number of weeks that was selected have passed), there may be several states that are undecided (still neutral), either because they are in a tie or no team has campaigned in them or allocated them fundraising money. At that point, a neutral state is selected and the teams roll 1 die each. The highest die wins the state and the electoral votes go to that team. If there is a tie roll, the teams roll again. The team with the highest number of electoral votes after all the neutral states have been awarded to either team, wins the game.</p>
+
+			<div class="lboxClose"></div>
+			</div>
+
+
+		</div>
+
+
+
+
+
+
+
+</body></html>
+
+
